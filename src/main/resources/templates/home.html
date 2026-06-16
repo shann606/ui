@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard Home</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .container {
+            width: 500px;
+            margin: auto;
+        }
+
+        .btn {
+            background-color: #1976d2;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background-color: #125ea7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Welcome to Dashboard Portal</h1>
+
+    <p>
+        Manage users, orders, and reports through a single dashboard.
+    </p>
+
+    <a th:href="@{/login}" class="btn">
+        Login
+    </a>
+
+</div>
+
+</body>
+</html>

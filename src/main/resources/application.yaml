@@ -1,3 +1,16 @@
 spring:
   application:
-    name: ui
+    name: ui frontend
+
+server:
+  port: 4000
+
+logging:
+  level:
+    root: warn
+    '[org.springframework.web]': debug
+    '[com.exp.ui]': trace
+
+
+    
+    
