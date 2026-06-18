@@ -1,72 +1,89 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Expense Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+<title>Expense Dashboard. Track your Expense</title>
 
-        .summary {
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
+<link rel="stylesheet" th:href="@{/css/dashboard.css}">
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background: #007bff;
-            color: white;
-            padding: 10px;
-        }
-
-        td {
-            padding: 10px;
-        }
-    </style>
 </head>
+<script src="/js/app.js"></script>
 <body>
 
-<h2>Expense Dashboard</h2>
+	<!-- TOP BAR -->
+	<div class="topbar">
+		<div class="left">
+			<span class="app-name">💰 Expense Tracker</span>
+		</div>
 
-<div class="summary">
-    <h3>
-        Total Expense:$13000
-        <span th:text="${totalExpense}"></span>
-           
-        
-    </h3>
-</div>
+		<div class="right">
+			<span class="user"> 👤 <span sec:authentication="name">User</span>
+			</span>
 
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Category</th>
-        <th>Amount</th>
-        <th>Date</th>
-    </tr>
-    </thead>
+			<form th:action="@{/logout}" method="post" class="logout-form">
+				<button type="submit" class="logout-btn">Logout</button>
+			</form>
+		</div>
+	</div>
+	<div class="container">
 
-    <tbody>
-    <tr th:each="expense : ${expenses}">
-        <td th:text="${expense.id}"></td>
-        <td th:text="${expense.category}"></td>
-        <td th:text="${expense.amount}"></td>
-        <td th:text="${expense.expenseDate}"></td>
-    </tr>
-    </tbody>
-</table>
+		<!-- SIDEBAR -->
+		<div class="sidebar">
+			<h2>Expense App</h2>
 
+			<a href="/dashboard">📊 Dashboard</a> <a href="/expenses">💰
+				Expenses</a> <a href="/add-expense">➕ Add Expense</a> <a
+				href="/categories">📂 Categories</a> <a href="/reports">📈
+				Reports</a> <a href="/settings">⚙ Settings</a>
+		</div>
+
+		<!-- MAIN CONTENT -->
+		<div class="main-content">
+
+			<h2>Expense Dashboard</h2>
+
+			<div class="summary">
+				<h3>
+					Total Expense: <span th:text="${totalExpense}"></span>
+				</h3>
+			</div>
+
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Category</th>
+						<th>Amount</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+
+				<tbody id="expenseTableBody">
+					<tr th:each="expense : ${expenses}">
+						<td th:text="${expense.id}"></td>
+						<td th:text="${expense.category}"></td>
+						<td th:text="${expense.amount}"></td>
+						<td th:text="${expense.date}"></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
 </body>
+
+
+<!-- Footer Fragment -->
+<footer th:fragment="dashboardFooter">
+    <div class="footer-container">
+        <p>&copy; 2026 My Dashboard. All rights reserved.</p>
+
+        <div class="footer-links">
+            <a href="/privacy">Privacy Policy</a>
+            <span>|</span>
+            <a href="/terms">Terms of Service</a>
+            <span>|</span>
+            <a href="/contact">Contact</a>
+        </div>
+    </div>
+</footer>	
 </html>
