@@ -39,6 +39,17 @@ public class HomeController {
 	public String dashboard() {
 		return "dashboard";
 	}
+	
+	
+	@GetMapping("/register")  
+	public String register() {
+		return "register";
+	}
+	
+	@GetMapping("/expenses")
+	public String expenses() {
+		return "expense";
+	}
 
 	@GetMapping("/api/expenses")
 	@ResponseBody

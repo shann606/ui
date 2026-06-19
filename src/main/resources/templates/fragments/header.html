@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+<header th:fragment="header">
+    <nav class="topbar">
+
+        <!-- Logo / App Name -->
+        <div class="topbar-left">
+            <a th:href="@{/dashboard}" class="logo">
+                💰 Expense Tracker
+            </a>
+        </div>
+
+        <!-- Right Section -->
+        <div class="topbar-right">
+
+            <div sec:authorize="isAuthenticated()" class="user-info">
+                <span class="user-icon">👤</span>
+                <span sec:authentication="name">Shanmugam.S</span>
+            </div>
+
+            <form sec:authorize="isAuthenticated()"
+                  th:action="@{/}"
+                  method="get"
+                  class="logout-form">
+                <button type="submit" class="logout-btn">
+                    Logout
+                </button>
+            </form>
+
+        </div>
+
+    </nav>
+</header>
+
+</body>
+</html>

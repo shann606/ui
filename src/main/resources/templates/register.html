@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>User Registration</title>
+<link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="form-card">
+			<h2>Create Account</h2>
+			<p class="subtitle">Register to access your account</p>
+
+			<form th:action="@{/register}" method="post">
+
+				<div class="form-row">
+					<label>Full Name</label> <input type="text"
+						placeholder="Enter full name" required>
+				</div>
+
+				<div class="form-row">
+					<label>Email</label> <input type="email" placeholder="Enter email"
+						required>
+				</div>
+
+				<div class="form-row">
+					<label>Username</label> <input type="text"
+						placeholder="Choose username" required>
+				</div>
+
+				<div class="form-row">
+					<label>Password</label> <input type="password"
+						placeholder="Create password" required>
+				</div>
+
+				<div class="form-row">
+					<label>Confirm Password</label> <input type="password"
+						name="confirmPassword" placeholder="Confirm password" required>
+				</div>
+
+				<button type="submit" class="btn">Register</button>
+
+			</form>
+
+			<div class="footer-link">
+				<p>
+					Already have an account? <a th:href="@{/login}">Login here</a>
+				</p>
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+</html>
