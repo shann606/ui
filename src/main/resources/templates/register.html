@@ -2,43 +2,79 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="_csrf" th:content="${_csrf.token}">
+<meta name="_csrf_header" th:content="${_csrf.headerName}">
 <title>User Registration</title>
 <link rel="stylesheet" th:href="@{/css/register.css}">
 </head>
+<script src="/js/register.js" defer></script>
 <body>
 
 	<div class="container">
 
 		<div class="form-card">
-			<h2>Create Account</h2>
-			<p class="subtitle">Register to access your account</p>
-
-			<form th:action="@{/register}" method="post">
+			<h2>Register to access your account</h2>
+	
+			<form th:action="@{/register}" method="post"
+				onsubmit="return validateForm()">
 
 				<div class="form-row">
-					<label>Full Name</label> <input type="text"
-						placeholder="Enter full name" required>
+					<label>Email</label> <input type="email" id="email"
+						placeholder="Enter email" required> <span id="emailError"
+						class="error"></span>
 				</div>
 
 				<div class="form-row">
-					<label>Email</label> <input type="email" placeholder="Enter email"
-						required>
-				</div>
-
-				<div class="form-row">
-					<label>Username</label> <input type="text"
-						placeholder="Choose username" required>
-				</div>
-
-				<div class="form-row">
-					<label>Password</label> <input type="password"
+					<label>Password</label> <input type="password" id="password"
 						placeholder="Create password" required>
 				</div>
 
+
 				<div class="form-row">
 					<label>Confirm Password</label> <input type="password"
-						name="confirmPassword" placeholder="Confirm password" required>
+						id="confirmPassword" placeholder="Confirm password" required>
 				</div>
+				<span id="passwordError" class="error"></span>
+
+				<div class="form-row">
+					<label for="gender">Gender</label> <select id="gender">
+						<option value="">-- Select Gender --</option>
+						<option value="MALE">Male</option>
+						<option value="FEMALE">Female</option>
+						<option value="Other">Other</option>
+					</select>
+
+
+				</div>
+
+
+
+				<div class="form-row">
+					<label>First Name</label> <input type="text" id="firstName"
+						placeholder="Enter first name" required>
+				</div>
+
+
+
+				<div class="form-row">
+					<label>Last Name</label> <input type="text" id="lastName"
+						placeholder="Enter last name" required>
+				</div>
+
+
+				<div class="form-row">
+					<label>Mobile No</label> <input type="text" id="mobileNo"
+						placeholder="Enter Mobile no" required>
+				</div>
+
+				<div class="form-row">
+					<label>Time Zone</label>  <select
+						id="timeZone" name="timeZone" required>
+						<option value="">Loading time zones...</option>
+					</select>
+				</div>
+
+
 
 				<button type="submit" class="btn">Register</button>
 

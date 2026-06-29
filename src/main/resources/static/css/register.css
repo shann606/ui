@@ -1,93 +1,130 @@
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #e3f2fd, #fce4ec);
-    margin: 0;
-    padding: 0;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+	margin: 0;
+	padding: 0;
 }
 
 .container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .form-card {
-    width: 420px;
-    background: #ffffff;
-    padding: 35px;
-    border-radius: 14px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+	width: 420px;
+	background: #ffffff;
+	padding: 35px;
+	border-radius: 14px;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 h2 {
-    text-align: center;
-    margin-bottom: 5px;
-    color: #333;
+	text-align: center;
+	margin-bottom: 5px;
+	color: #333;
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 5px 0;
+    z-index: 20;
 }
 
-.subtitle {
-    text-align: center;
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 25px;
-}
 
 .form-row {
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 label {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 14px;
-    color: #444;
+	display: block;
+	margin-bottom: 6px;
+	font-size: 14px;
+	color: #444;
 }
 
 input {
-    width: 100%;
-    padding: 11px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: 0.3s;
+	width: 100%;
+	padding: 11px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	font-size: 14px;
+	transition: 0.3s;
 }
 
 input:focus {
-    border-color: #6c63ff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(108, 99, 255, 0.3);
+	border-color: #6c63ff;
+	outline: none;
+	box-shadow: 0 0 5px rgba(108, 99, 255, 0.3);
 }
 
 .btn {
-    width: 100%;
-    padding: 12px;
-    background: #1976d2;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: 0.3s;
+	width: 100%;
+	padding: 12px;
+	background: #1976d2;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	font-size: 15px;
+	cursor: pointer;
+	margin-top: 10px;
+	transition: 0.3s;
 }
 
 .btn:hover {
-    background: #125ea7;
+	background: #125ea7;
 }
 
 .footer-link {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
+	text-align: center;
+	margin-top: 15px;
+	font-size: 14px;
 }
 
 .footer-link a {
-    color: #6c63ff;
-    text-decoration: none;
-    font-weight: 500;
+	color: #6c63ff;
+	text-decoration: none;
+	font-weight: 500;
 }
 
 .footer-link a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
+}
+
+.error {
+	color: red;
+	font-size: 14px;
+}
+
+.form-row select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none;
+    cursor: pointer;
+
+    /* Custom dropdown arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6 6 6-6' stroke='%23666' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px;
+}
+
+.form-row select:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.form-row select:invalid {
+    color: #888;
+}
+
+.form-row option {
+    color: #333;
 }
