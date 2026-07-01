@@ -1,76 +1,49 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Login</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-
-        .login-box {
-            width: 350px;
-            margin: 100px auto;
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px #ccc;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #1976d2;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #125ea7;
-        }
-
-        .error {
-            color: red;
-        }
-    </style>
+<title>Login</title>
+<link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
 
-<div class="login-box">
+	<div class="login-box">
 
-    <h2>Login</h2>
+		<h2>Login</h2>
+		<div th:if="${param.error}" class="error">
+		  <span style="font-size:18px;">⚠️</span>
+		Invalid username or password. Please try again.</div>
+		
+		<div th:if="${param.server}" class="error">
+		  <span style="font-size:18px;">⚠️</span>
+		Unable to connect server, Please try later.</div>
 
-    <form th:action="@{/authenticate}" method="post">
+		<!-- Display success message when ?registered=true is present -->
+		<div th:if="${param.success}" class="success">
+		<span style="font-size:18px;">✅</span>
+			Registration successful! Please log in.</div>
+			
+			<div th:if="${param.logout}" class="success">
+		<span style="font-size:18px;">✅</span>
+			Thanks , you are logged out successfully.</div>
 
-        <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                required />
+		<form th:action="@{/login}" method="post">
 
-        <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required />
+			<input type="email" name="username" placeholder="Please enter email" id="username" required />
 
-        <button type="submit">
-            Sign In
-        </button>
+			<input type="password" name="password" placeholder="Password" id="password"
+				required />
 
-    </form>
+			<button type="submit">Sign In</button>
 
-</div>
+		</form>
+
+		<div class="register-link">
+			<p>
+				New user? <a th:href="@{/register}">Create an account</a>
+			</p>
+		</div>
+
+	</div>
 
 </body>
 </html>
