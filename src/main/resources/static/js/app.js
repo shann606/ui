@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
     try {
-        const response = await fetch('/api/expenses');
+        const response = await fetch('/api/v1/expenses');
 
         if (!response.ok) {
             throw new Error('Failed to fetch expenses');
@@ -9,10 +9,10 @@ window.addEventListener('load', async () => {
         const expenses = await response.json();
 
         const tbody = document.getElementById('expenseTableBody');
-        let total = 0;
+        let totalExpense = 0;
 
         expenses.forEach(expense => {
-            total += expense.amount;
+            totalExpense += expense.amount;
 
             const row = `
                 <tr>
@@ -26,9 +26,10 @@ window.addEventListener('load', async () => {
             tbody.insertAdjacentHTML('beforeend', row);
         });
 
-        document.getElementById('totalExpense').textContent = total;
+        document.getElementById('totalexpense').textContent = totalExpense;
 
     } catch (error) {
         console.error(error);
     }
 });
+

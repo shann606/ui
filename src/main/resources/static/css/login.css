@@ -35,9 +35,32 @@ button:hover {
 	background-color: #125ea7;
 }
 
-.error {
-	color: red;
+.error{
+
+    display:block;
+
+    margin-bottom:20px;
+
+    color:#dc2626;
+
+    font-size:14px;
+
+    font-weight:500;
 }
+
+.success{
+
+    display:block;
+
+    margin-bottom:16px;
+
+    color:#065f46;
+
+    font-size:16px;
+
+    font-weight:500;
+}
+
 
 .register-link {
 	text-align: center;

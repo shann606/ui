@@ -1,89 +1,95 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<meta name="_csrf" th:content="${_csrf.token}">
-<meta name="_csrf_header" th:content="${_csrf.headerName}">
-<title>User Registration</title>
+
+ <!--  <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+ -->  
+
+<title>Create Account</title>
+
 <link rel="stylesheet" th:href="@{/css/register.css}">
+<script th:src="@{/js/register.js}" defer></script>
 </head>
-<script src="/js/register.js" defer></script>
+
 <body>
 
 	<div class="container">
 
 		<div class="form-card">
-			<h2>Register to access your account</h2>
-	
-			<form th:action="@{/register}" method="post"
+
+			<h2>Create your account</h2>
+			<p class="subtitle">Fill in the details below to create your
+				account.</p>
+
+			<span id="responseError" class="error"></span>
+
+			<form id="registerForm" th:action="@{/register}" method="post"
 				onsubmit="return validateForm()">
 
 				<div class="form-row">
-					<label>Email</label> <input type="email" id="email"
-						placeholder="Enter email" required> <span id="emailError"
-						class="error"></span>
+					<label>Email Address</label> <input type="email" id="email"
+						name="email" placeholder="name@example.com" required> <span
+						id="emailError" class="error"></span>
 				</div>
 
 				<div class="form-row">
 					<label>Password</label> <input type="password" id="password"
-						placeholder="Create password" required>
+						name="password" placeholder="Enter password" required>
 				</div>
-
 
 				<div class="form-row">
 					<label>Confirm Password</label> <input type="password"
-						id="confirmPassword" placeholder="Confirm password" required>
+						id="confirmPassword" name="confirmPassword"
+						placeholder="Confirm password" required> <span
+						id="passwordError" class="error"></span>
 				</div>
-				<span id="passwordError" class="error"></span>
 
 				<div class="form-row">
-					<label for="gender">Gender</label> <select id="gender">
-						<option value="">-- Select Gender --</option>
+					<label>Gender</label> <select id="gender" name="gender">
+						<option value="">Select Gender</option>
 						<option value="MALE">Male</option>
 						<option value="FEMALE">Female</option>
-						<option value="Other">Other</option>
+						<option value="OTHER">Other</option>
 					</select>
-
-
 				</div>
-
-
 
 				<div class="form-row">
 					<label>First Name</label> <input type="text" id="firstName"
-						placeholder="Enter first name" required>
+						name="firstName" placeholder="First Name" required>
 				</div>
-
-
 
 				<div class="form-row">
 					<label>Last Name</label> <input type="text" id="lastName"
-						placeholder="Enter last name" required>
-				</div>
-
-
-				<div class="form-row">
-					<label>Mobile No</label> <input type="text" id="mobileNo"
-						placeholder="Enter Mobile no" required>
+						name="lastName" placeholder="Last Name" required>
 				</div>
 
 				<div class="form-row">
-					<label>Time Zone</label>  <select
-						id="timeZone" name="timeZone" required>
+					<label>Mobile Number</label> <input type="text" id="mobileNo"
+						name="mobileNo" placeholder="9876543210" required>
+				</div>
+
+				<div class="form-row">
+					<label>Time Zone</label> <select id="timeZone" name="timeZone"
+						required>
+
 						<option value="">Loading time zones...</option>
+
 					</select>
 				</div>
 
+				<button class="btn" type="submit">Create Account</button>
 
 
-				<button type="submit" class="btn">Register</button>
 
 			</form>
 
 			<div class="footer-link">
-				<p>
-					Already have an account? <a th:href="@{/login}">Login here</a>
-				</p>
+
+				Already have an account? <a th:href="@{/login}"> Sign In </a>
+
 			</div>
 
 		</div>

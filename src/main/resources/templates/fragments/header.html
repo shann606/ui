@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <body>
 
 <header th:fragment="header">
@@ -22,8 +22,8 @@
             </div>
 
             <form sec:authorize="isAuthenticated()"
-                  th:action="@{/}"
-                  method="get"
+                  th:action="@{/signout}"
+                  method="post"
                   class="logout-form">
                 <button type="submit" class="logout-btn">
                     Logout
