@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<title>Expense Dashboard. Track your Expense</title>
+
+<link rel="stylesheet" th:href="@{/css/dashboard.css}">
+<link rel="stylesheet" th:href="@{/css/edituser.css}">
+</head>
+<script src="/js/edituser.js" defer></script>
+
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="container">
+
+		<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+		<!-- MAIN CONTENT -->
+		<div class="main-content">
+
+
+			<div class="form-card">
+
+				<h2>Edit User Details</h2>
+
+
+				<span id="responseError" class="error"></span>
+				<span id="loggedinrole" th:text="${roles}" hidden="hidden"></span>
+
+				<form id="updateuser">
+				
+	
+					<div class="form-row">
+						<label>Email Address</label> <input type="email" id="email"
+							name="email" readonly="readonly"> <span id="emailError"
+							class="error"></span>
+					</div>
+
+					<div class="form-row">
+						<label>First Name</label> <input type="text" id="firstname"
+							name="firstname" readonly="readonly">
+					</div>
+
+					<div class="form-row">
+						<label>Last Name</label> <input type="text" id="lastname"
+							name="lastname" readonly="readonly">
+					</div>
+					<div th:if="${roles.contains('ROLE_ADMIN')}">
+						<div class="form-row">
+							<label>Change Password</label> <input type="password"
+								id="password" name="password">
+						</div>
+					</div>
+					<div class="form-row">
+						<label>Mobile no</label> <input type="text" id="mobileno"
+							name="mobileno" required>
+					</div>
+
+					<div class="form-row">
+						<label>Status</label> <input type="text" id="userstatus"
+							name="userstatus" readonly="readonly">
+					</div>
+					<div th:if="${roles.contains('ROLE_ADMIN')}">
+						<div class="form-row">
+							<label>Update Status</label> <select id="changestatus"
+								name="changestatus">
+
+								<option value="">Loading User Status...</option>
+
+							</select>
+						</div>
+
+						<div class="form-row">
+							<label>Delete roles</label> <select id="userroles"
+								name="userroles" multiple>
+							</select>
+						</div>
+
+						<div class="form-row">
+							<label>Add Roles</label> <select id="changerole"
+								name="changerole">
+
+								<option value="">Loading User Roles...</option>
+
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<label>Time Zone</label> <select id="timeZone" name="timeZone">
+
+							<option value="">Loading time zones...</option>
+
+						</select>
+					</div>
+
+					<button class="btn" type="submit">Update Account</button>
+
+
+
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/footer :: dashboardFooter}"></div>
+</body>
+
+</html>

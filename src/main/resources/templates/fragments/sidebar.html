@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+      
+      <head><link rel="stylesheet" th:href="@{/css/sidebar.css}"></head>
+<body>
+
+<div th:fragment="sidebar">
+<!-- SIDEBAR -->
+		<div class="sidebar">
+		<div th:if="${roles.contains('ROLE_USER') || roles.contains('ROLE_ADMIN')}">
+			<a th:href="@{/dashboard}">📊 Dashboard</a> 
+			<a th:href="@{/expenses}">💰	Expenses</a> 
+			<a th:href="@{/reports}">📈Reports</a> 
+			<a th:href="@{/editprofile(id=${id})}">✏️ Edit Profile</a>
+			</div>
+			<div th:if="${roles.contains('ROLE_ADMIN')}">
+			<a th:href="@{/users}">👥User Management</a>
+			<a th:href="@{/categories}">📂 Categories</a> 
+			<a th:href="@{/settings}">⚙ Settings</a>
+			</th:if>
+			</div>
+		</div>
+</div>
+
+</body>
+</html>

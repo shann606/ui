@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<title>Expense Dashboard. Track your Expense</title>
+
+<link rel="stylesheet" th:href="@{/css/dashboard.css}">
+
+</head>
+<script src="/js/usersearch.js" defer></script>
+
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="container">
+
+		<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+		<!-- MAIN CONTENT -->
+		<div class="main-content">
+
+			<h2>User Management</h2>
+
+
+			<div class="search-container">
+
+				<h2>User Search</h2>
+
+				<form id="usersearch" method="get">
+
+					<div class="search-grid">
+
+						<label>Username</label> <input type="text" name="username"
+							id="username" th:value="${param.username}"> <label>First
+							Name</label> <input type="text" name="firstname" id="firstname"
+							th:value="${param.firstName}"> <label>Last Name</label> <input
+							type="text" name="lastname" id="lastname"
+							th:value="${param.lastName}"> <label>Created From</label>
+						<input type="date" name="fromdate" id="fromdate"
+							th:value="${param.fromDate}"> <label>Created To</label> <input
+							type="date" name="todate" id="todate" th:value="${param.toDate}">
+
+					</div>
+
+
+
+
+					<div class="buttons">
+						<button type="reset">Clear</button>
+						<button type="submit">Search</button>
+					</div>
+
+				</form>
+
+			</div>
+
+			<table>
+				<thead>
+					<tr>
+                        <th>Username</th>
+						<th>FirstName</th>
+						<th>LastName</th>
+						<th>CreatedOn</th>
+						<th>Status</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+
+				<tbody id="userresultbody">
+
+				</tbody>
+			</table>
+			<div class="pagination-container">
+
+				<button id="prevBtn" class="page-btn">&laquo; Previous</button>
+
+				<span id="pageInfo" class="page-info"> Page 1 of 1 </span>
+
+				<button id="nextBtn" class="page-btn">Next &raquo;</button>
+
+			</div>
+
+
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/footer :: dashboardFooter}"></div>
+</body>
+
+</html>
