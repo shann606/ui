@@ -13,14 +13,9 @@
 	<div th:replace="~{fragments/header :: header}"></div>
 
 	<div class="container">
-
-		<!-- SIDEBAR -->
-		<div class="sidebar">
-			<a href="/dashboard">📊 Dashboard</a> <a href="/expenses">💰
-				Expenses</a> <a href="/categories">📂 Categories</a> <a href="/reports">📈
-				Reports</a> <a href="/settings">⚙ Settings</a>
-		</div>
-
+	
+     <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+		
 		<!-- MAIN CONTENT -->
 		<div class="main-content">
 
@@ -29,6 +24,7 @@
 			<div class="summary">
 				<h3>
 					Total Expense: <span id="totalexpense" th:text="${totalExpense}"></span>
+					
 				</h3>
 			</div>
 

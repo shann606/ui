@@ -195,3 +195,136 @@ td a:hover {
 .footer-links a:hover {
 	color: white;
 }
+
+.space-between{
+	margin-top: 100px;
+	text-align: center;
+}
+
+/* Search Panel */
+.search-container {
+    background: #ffffff;
+    border: 1px solid #dcdfe6;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.search-container h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #2c3e50;
+    border-bottom: 1px solid #ececec;
+    padding-bottom: 10px;
+}
+
+/* Form Layout */
+.search-grid {
+    display: grid;
+    grid-template-columns: 160px 1fr 160px 1fr;
+    gap: 18px 20px;
+    align-items: center;
+}
+
+/* Labels */
+.search-grid label {
+    font-weight: 600;
+    color: #495057;
+    font-size: 14px;
+}
+
+/* Inputs */
+.search-grid input,
+.search-grid select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all .2s ease;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.search-grid input:focus,
+.search-grid select:focus {
+    outline: none;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13,110,253,.15);
+}
+
+/* Button Section */
+.buttons {
+    margin-top: 25px;
+    text-align: right;
+    border-top: 1px solid #ececec;
+    padding-top: 18px;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+/* Search Button */
+button[type="submit"] {
+    background: #0d6efd;
+    color: #fff;
+}
+
+button[type="submit"]:hover {
+    background: #0b5ed7;
+}
+
+/* Clear Button */
+button[type="reset"] {
+    background: #6c757d;
+    color: #fff;
+    margin-right: 10px;
+}
+
+button[type="reset"]:hover {
+    background: #5c636a;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.page-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.page-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.page-info {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    min-width: 110px;
+    text-align: center;
+}
