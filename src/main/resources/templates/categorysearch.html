@@ -6,7 +6,7 @@
 <link rel="stylesheet" th:href="@{/css/dashboard.css}">
 <link rel="stylesheet" th:href="@{/css/sidebar.css}">
 <script th:src="@{/js/sidebar.js}" defer></script>
-<script th:src="@{/js/usersearch.js}" defer></script>
+<script th:src="@{/js/categorysearch.js}" defer></script>
 
 </head>
 
@@ -22,26 +22,19 @@
 		<!-- MAIN CONTENT -->
 		<div class="main-content">
 
-			<h2>User Management</h2>
+			<h2>Search Category</h2>
 
 
 			<div class="search-container">
 
-				<h2>User Search</h2>
-
-				<form id="usersearch" method="get">
+				<form id="categorysearch" method="get">
 
 					<div class="search-grid">
 
-						<label>Username</label> <input type="text" name="username"
-							id="username" th:value="${param.username}"> <label>First
-							Name</label> <input type="text" name="firstname" id="firstname"
-							th:value="${param.firstName}"> <label>Last Name</label> <input
-							type="text" name="lastname" id="lastname"
-							th:value="${param.lastName}"> <label>Created From</label>
-						<input type="date" name="fromdate" id="fromdate"
-							th:value="${param.fromDate}"> <label>Created To</label> <input
-							type="date" name="todate" id="todate" th:value="${param.toDate}">
+						<label>Name</label> <input type="text" name="name" 	id="name" th:value="${param.name}"> 
+						<label>Status</label> <input type="text" name="status" id="status" th:value="${param.status}"> 
+						<label>Created From</label> <input type="date" name="fromdate" id="fromdate" th:value="${param.fromDate}"> 
+						<label>Created To</label> <input type="date" name="todate" id="todate" th:value="${param.toDate}">
 
 					</div>
 
@@ -60,16 +53,15 @@
 			<table>
 				<thead>
 					<tr>
-                        <th>Username</th>
-						<th>FirstName</th>
-						<th>LastName</th>
-						<th>CreatedOn</th>
+						<th>Name</th>
 						<th>Status</th>
+						<th>SubCategory</th>
+						<th>CreatedOn</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 
-				<tbody id="userresultbody">
+				<tbody id="categoryresultbody">
 
 				</tbody>
 			</table>

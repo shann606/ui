@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<title>Expense Dashboard. Track your Expense</title>
+
+<link rel="stylesheet" th:href="@{/css/dashboard.css}">
+<link rel="stylesheet" th:href="@{/css/category.css}">
+<link rel="stylesheet" th:href="@{/css/sidebar.css}">
+<script th:src="@{/js/sidebar.js}" defer></script>
+<script th:src="@{/js/category.js}" defer></script>
+
+
+</head>
+
+
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="container">
+
+		<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+		<!-- MAIN CONTENT -->
+		<div class="main-content">
+
+
+			<div class="form-card">
+
+
+
+
+				<span id="responseError" class="error"></span> <span
+					id="loggedinrole" th:text="${roles}" hidden="hidden"></span>
+				<h2>Category Management</h2>
+				<p class="subtitle">Manage your categories and subcategories</p>
+					<nav class="action-menu">
+					<a id="addsubcategory" href="#">Add Subcategory</a> 
+					<a id="viewsubcategory" href="#">View Subcategories</a>
+				</nav>
+				<form id="addcategory">
+
+
+					<div class="form-row">
+						<label>Category Name :</label> <input type="catname" id="catname"
+							name="catname" required="required">
+					</div>
+
+					<div class="form-row">
+						<label>Description(only 5 lines)</label>
+						<textarea id="description" rows="3" width="100%"
+							placeholder="Enter category description">
+       					 </textarea>
+					</div>
+
+					<div class="form-row">
+						<label>Status</label> <select id="status" name="status">
+
+							<option value="">Loading Status...</option>
+							<option value="ACTIVE">Active</option>
+							<option value="INACTIVE">InActive</option>
+
+						</select>
+					</div>
+					<button class="btn" type="submit">Save</button>
+
+				</form>
+
+
+			</div>
+		</div>
+
+	</div>
+
+	<div th:replace="~{fragments/footer :: dashboardFooter}"></div>
+</body>
+
+</html>

@@ -2,33 +2,32 @@
    SIDEBAR
 ========================= */
 .sidebar {
-	position: fixed;
-	top: 64px;
-	left: 0;
-	width: 220px;
-	height: calc(100vh - 64px);
-	background: #343a40;
-	color: white;
-	padding: 20px;
-	overflow-y: auto;
-}
-
-.sidebar h2 {
-	margin-bottom: 20px;
-	font-size: 20px;
+    width: 230px;
+    background: #2c3e50;
 }
 
 .sidebar a {
-	display: block;
-	color: #ddd;
-	padding: 12px;
-	margin-bottom: 8px;
-	text-decoration: none;
-	border-radius: 6px;
-	transition: 0.3s;
+    display: block;
+    color: white;
+    padding: 12px 18px;
+    text-decoration: none;
 }
 
 .sidebar a:hover {
-	background: #2563eb;
-	color: white;
+    background-color: #34495e;
+}
+
+/* Submenu */
+.submenu {
+    display: none;
+    background-color: #3b4b5b;
+}
+
+.submenu a {
+    padding-left: 35px;
+    font-size: 12px;
+}
+
+.submenu.show {
+    display: block;
 }
