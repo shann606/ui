@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	data-bs-theme="white">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author"
+	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+<<title>Expense Tracker</title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css}">
+
+<!-- Custom CSS -->
+
+<link rel="stylesheet" th:href="@{/css/sidebar1.css}">
+
+<!-- Theme JS -->
+<script th:src="@{/js/bootstrap/color-modes.js}"></script>
+<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+<!--  calling microservices -->
+<script th:src="@{/js/app.js}" defer></script>
+
+<meta name="theme-color" content="#712cf9">
+<title>Expense Dashboard. Track your Expense</title>
+
+
+
+</head>
+
+
+
+
+<body>
+
+	<div th:replace="~{fragments/header1 :: header}"></div>
+	<div class="container-fluid">
+		<div class="row">
+
+			<!-- Sidebar -->
+			<div class="col-md-3 col-lg-2 p-0">
+				<div th:replace="~{fragments/sidebar1 :: sidebar}"></div>
+			</div>
+
+			<!-- Main Content -->
+			
+			<main class="col-md-9 col-lg-10 ps-5 pe-4 pt-4 pb-4">
+
+				<!-- Page Header -->
+				<div class="d-flex justify-content-between align-items-center mb-4">
+
+					<div>
+						<h2 class="fw-bold mb-1">Expense Dashboard</h2>
+
+						<p class="text-muted mb-0">Track and manage your expenses</p>
+					</div>
+
+				</div>
+
+
+				<!-- Summary Card -->
+				<div class="row mb-4">
+
+					<div class="col-md-4">
+
+						<div class="card shadow-sm border-0">
+
+							<div class="card-body">
+
+								<div class="d-flex align-items-center">
+
+									<div class="bg-primary text-white rounded-circle p-3 me-3">
+										<i class="bi bi-wallet2 fs-4"></i>
+									</div>
+
+
+									<div>
+										<h6 class="text-muted mb-1">Total Expense</h6>
+
+										<h3 class="fw-bold mb-0">
+											₹ <span id="totalexpense" th:text="${totalExpense}"> 0
+											</span>
+										</h3>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+				<!-- Expense Table Card -->
+				<div class="card shadow-sm border-0">
+
+
+					<div class="card-header bg-dark">
+
+						<h5 class="mb-0 fw-semibold">Recent Expenses</h5>
+
+					</div>
+
+
+					<div class="card-body p-0">
+
+
+						<div class="table-responsive">
+
+							<table class="table table-hover align-middle mb-0">
+
+
+								<thead class="table-light">
+
+									<tr>
+
+										<th scope="col">ID</th>
+
+										<th scope="col">Category</th>
+
+										<th scope="col">Amount</th>
+
+										<th scope="col">Date</th>
+
+									</tr>
+
+								</thead>
+
+
+
+								<tbody id="expenseTableBody">
+
+
+									<tr th:each="expense : ${expenses}">
+
+
+										<td th:text="${expense.id}">1</td>
+
+
+										<td><span class="badge bg-primary-subtle text-primary"
+											th:text="${expense.category}"> Food </span></td>
+
+
+										<td class="fw-semibold">₹ <span
+											th:text="${expense.amount}"> 0 </span>
+
+										</td>
+
+
+										<td class="text-muted" th:text="${expense.date}">
+											01-01-2026</td>
+
+
+									</tr>
+						</table>
+
+						</div>
+
+
+					</div>
+
+
+				</div>
+
+			</main>
+
+		</div>
+	</div>
+
+</body>
+
+
+</body>
+
+</html>

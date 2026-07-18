@@ -1,10 +1,21 @@
 let currentPage = 0;
-let totalPages =0;
+let totalPages = 0;
+let reqFrom;
 
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const queryId = window.location.search;
+    reqFrom = new URLSearchParams(queryId).get("action");
     const form = document.getElementById("categorysearch");
+
+    const sTitle = document.getElementById("search");
+
+    if (reqFrom === "view") {
+        sTitle.innerHTML = "Search Categories";
+    } else {
+        sTitle.innerHTML = "Add Sub Categories";
+    }
 
     form.addEventListener("submit", categorysearch);
 
@@ -15,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 async function categorysearch(event) {
+
+
 
     event.preventDefault();
 
@@ -32,13 +45,13 @@ async function fetchData(page) {
         status: document.getElementById("status").value,
         fromdate: document.getElementById("fromdate").value,
         todate: document.getElementById("todate").value
-		
-		
+
+
 
 
     });
-	console.log(fieldDetails.toString);
-	  try {
+    console.log(fieldDetails.toString);
+    try {
         const response = await fetch(`http://localhost:1000/api/v1/categories/search?${fieldDetails}&pageNo=${page}`, {
 
             method: "GET",
@@ -47,15 +60,15 @@ async function fetchData(page) {
         if (response.ok) {
 
             result = await response.json();
- 
+
         } else {
 
             const error = await response.json();
 
             console.error(error.reason);
         }
-		
-		console.log(JSON.stringify(result))
+
+        console.log(JSON.stringify(result))
 
 
     } catch (err) {
@@ -81,9 +94,15 @@ function renderTable(content) {
 	  
 	    <tr>
 		  
-	      <td>${item.name}</td>
+	      <td><a href="">${item.name}</a></td>
 	      <td>${item.status}</td>
-	      <td><a href="/categories/subcategories?id=${item.id}">view</a></td>
+		
+		  <td>
+		              ${reqFrom === 'view' ?
+                `<a href="/categories/subcategories?id=${item.id}&pageNo=0">view</a>` :
+                `<a href="/categories/subcategories/add?id=${item.id}&name=${item.name}">add</a>`
+            }
+		  </td>
 		  <td>${created}</td>
 		  <td><a href="/dashboard?id=${item.id}">Delete</a></td>
 	    </tr>
@@ -96,7 +115,7 @@ function renderTable(content) {
 function updatePagination(result) {
 
     currentPage = result.number;
-    totalPages = result.totalPages-1;
+    totalPages = result.totalPages - 1;
 
     document.getElementById("pageInfo").innerText = `Page ${currentPage} of ${totalPages}`;
 
@@ -107,7 +126,7 @@ function updatePagination(result) {
 // Button events
 document.getElementById("prevBtn").addEventListener("click", () => {
     if (currentPage > 0) {
-        fetchData(currentPage-1);
+        fetchData(currentPage - 1);
     }
 });
 
