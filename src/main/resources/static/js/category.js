@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
 async function addCategory(event) {
     event.preventDefault();
     const responseError = document.getElementById("responseError");
-    responseError.innerHTML = "";
-	let result="";
+
+    let result = "";
 
     const category = {
         name: document.getElementById("catname").value,
@@ -26,26 +26,31 @@ async function addCategory(event) {
             body: JSON.stringify(category)
 
         });
-		
-		result =await response.json();
+
+        result = await response.json();
 
         if (response.status == 201) {
-		
+            const successDiv = document.getElementById("responseSuccess");
+
+            successDiv.textContent = "Category added successfully.";
+            successDiv.classList.remove("d-none");
+
             console.log("Success " + JSON.stringify(result));
             rendertable(result);
 
         } else {
 
             console.log("different status" + JSON.stringify(result));
-            responseError.innerHTML = result.reason;
-          //  throw new Error("Request failed");
+            responseError.textContent = result.reason;
+            responseError.classList.remove("d-none");
         }
 
 
 
     } catch (err) {
         console.error(err);
-        responseError.innerHTML = "Unable to connect to server...";
+        responseError.textContent = result.reason;
+        responseError.classList.remove("d-none");
     }
 
 }
@@ -56,8 +61,11 @@ function rendertable(data) {
     document.getElementById("catname").value = data.name;
     document.getElementById("description").value = data.description;
     document.getElementById("status").value = data.status;
-	
-	document.getElementById("addsubcategory").href =
-	    "/subcategory/add?id=" + encodeURIComponent(data.id);
+
+    document.getElementById("addsubcategory").href =
+        "/categories/subcategories/add?id="+encodeURIComponent(data.id)+"&name="+encodeURIComponent(data.name);
+		
+		document.getElementById("viewsubcategory").href =
+		       "/categories/subcategories?id="+encodeURIComponent(data.id)+"&pageNo=0";
 
 }

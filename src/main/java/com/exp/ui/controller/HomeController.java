@@ -26,105 +26,119 @@ public class HomeController {
 
 	@GetMapping("/login")
 	public String login() {
-		return "login";
+		return "login1";
 	}
-	
+
 	@GetMapping("/users/edit")
 	public String editUser(@RequestHeader(name = "X-Username") String username, @RequestHeader("X-Roles") String roles,
-			@RequestParam String id,   Model model) {
-		
-		System.out.println("id::: "+ id);
-		
+			@RequestParam String id, Model model) {
+
+		System.out.println("id::: " + id);
+
 		model.addAttribute("id", id);
 		model.addAttribute("username", username);
-		model.addAttribute("roles",  Arrays.stream(roles.split(",")).toList());
-		return "edituser";
+		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
+		return "edituser1";
 	}
-	
+
 	@GetMapping("/users")
-	public String userManagement(@RequestHeader(name = "X-Username") String username, @RequestHeader("X-Roles") String roles,@RequestHeader("X-Id") String id,
-			Model model) {
+	public String userManagement(@RequestHeader(name = "X-Username") String username,
+			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id, Model model) {
 		model.addAttribute("id", id);
 		model.addAttribute("username", username);
-		model.addAttribute("roles",  Arrays.stream(roles.split(",")).toList());
-		return "usermanagement";
+		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
+		return "usermanagement1";
 	}
 
 	@GetMapping("/dashboard")
-	public String dashBoard(@RequestHeader(name = "X-Username") String username, @RequestHeader("X-Roles") String roles,@RequestHeader("X-Id") String id,
-			Model model) {
-		System.out.println("Getting id of the user "+ id);
-		
+	public String dashBoard(@RequestHeader(name = "X-Username") String username, @RequestHeader("X-Roles") String roles,
+			@RequestHeader("X-Id") String id, Model model) {
+		System.out.println("Getting id of the user " + id);
+
 		model.addAttribute("id", id);
 		model.addAttribute("username", username);
-		model.addAttribute("roles",  Arrays.stream(roles.split(",")).toList());
-		
-		System.out.println("Are we getting the data ==="+ username + "----"+ roles);
+		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
 
-		return "dashboard";
+		System.out.println("Are we getting the data ===" + username + "----" + roles);
+
+		return "dashboard1";
 
 	}
-	
+
 	@GetMapping("/editprofile")
-	public String editProfile(@RequestHeader(name = "X-Username") String username, @RequestHeader("X-Roles") String roles,@RequestHeader("X-Id") String id,
-			Model model) {
-		
+	public String editProfile(@RequestHeader(name = "X-Username") String username,
+			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id, Model model) {
+
 		model.addAttribute("id", id);
 		model.addAttribute("username", username);
-		model.addAttribute("roles",  Arrays.stream(roles.split(",")).toList());
-		
-		System.out.println("Are we getting the data ==="+ username + "----"+ roles);
+		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
 
-		return "edituser";
+		System.out.println("Are we getting the data ===" + username + "----" + roles);
+
+		return "edituser1";
 
 	}
-	
+
 	@GetMapping("/categories/add")
-	public String categories(@RequestHeader(name = "X-Username") String username, @RequestHeader("X-Roles") String roles,@RequestHeader("X-Id") String id,
-			Model model) {
-		
+	public String categories(@RequestHeader(name = "X-Username") String username,
+			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id, Model model) {
+
 		model.addAttribute("id", id);
 		model.addAttribute("username", username);
-		model.addAttribute("roles",  Arrays.stream(roles.split(",")).toList());
-		
-		System.out.println("Are we getting the data ==="+ username + "----"+ roles);
+		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
 
-		return "categories";
+		System.out.println("Are we getting the data ===" + username + "----" + roles);
+
+		return "categories1";
 
 	}
-	
+
 	@GetMapping("/categories/search")
-	public String categorieSearch(@RequestHeader(name = "X-Username") String username, @RequestHeader("X-Roles") String roles,@RequestHeader("X-Id") String id,
-			Model model) {
-		
+	public String categorieSearch(@RequestHeader(name = "X-Username") String username,
+			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id, Model model) {
+
 		model.addAttribute("id", id);
 		model.addAttribute("username", username);
-		model.addAttribute("roles",  Arrays.stream(roles.split(",")).toList());
-		
-		System.out.println("Are we getting the data ==="+ username + "----"+ roles);
+		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
 
-		return "categorysearch";
+		System.out.println("Are we getting the data ===" + username + "----" + roles);
+
+		return "categorysearch1";
 
 	}
-	
+
 	@GetMapping("/categories/subcategories")
-	public String subCategories(@RequestHeader(name = "X-Username") String username, @RequestHeader("X-Roles") String roles,@RequestHeader("X-Id") String id,
-			Model model) {
-		System.out.println("which id we are getting here "+ id);
+	public String subCategories(@RequestHeader(name = "X-Username") String username,
+			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id, Model model) {
+
 		model.addAttribute("id", id);
 		model.addAttribute("username", username);
-		model.addAttribute("roles",  Arrays.stream(roles.split(",")).toList());
-		
-		System.out.println("Are we getting the data ==="+ username + "----"+ roles);
+		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
+
+		System.out.println("Are we getting the data ===" + username + "----" + roles);
 
 		return "subcategories";
 
 	}
 
+	@GetMapping("/categories/subcategories/add")
+	public String addSubCategories(@RequestHeader(name = "X-Username") String username,
+			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id,
+			Model model) {
+
+		model.addAttribute("id", id);
+		model.addAttribute("username", username);
+		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
+
+		System.out.println("Are we getting the data ===" + username + "----" + roles);
+
+		return "addSubcategories";
+
+	}
 
 	@GetMapping("/register")
 	public String registerPage() {
-		return "register";
+		return "register1";
 	}
 
 }

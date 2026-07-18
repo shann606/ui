@@ -93,14 +93,18 @@ async function registerUser(event) {
             const error = await response.json();
 
             console.error(error.reason);
-            if (!undefined)
+            if (!undefined){
                 responseError.innerHTML = error.reason;
+				
+				responseError.classList.add("text-danger", "fw-bold");
+				}
         }
 
     } catch (err) {
 
         console.error(err);
         responseError.innerHTML = "Unable to connect to server...";
+		responseError.classList.add("text-danger", "fw-bold");
 
     }
 

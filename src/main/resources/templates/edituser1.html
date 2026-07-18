@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	data-bs-theme="white">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author"
+	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+<<title>Expense Tracker</title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css}">
+
+<!-- Custom CSS -->
+
+<link rel="stylesheet" th:href="@{/css/sidebar1.css}">
+
+<!-- Theme JS -->
+<script th:src="@{/js/bootstrap/color-modes.js}"></script>
+<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+<!--  calling microservices -->
+<script th:src="@{/js/edituser.js}" defer></script>
+
+<meta name="theme-color" content="#712cf9">
+<title>Expense Dashboard. Track your Expense</title>
+
+
+
+</head>
+
+
+
+
+<body>
+
+	<div th:replace="~{fragments/header1 :: header}"></div>
+	<div class="container-fluid">
+		<div class="row">
+
+			<!-- Sidebar -->
+			<div class="col-md-3 col-lg-2 p-0">
+				<div th:replace="~{fragments/sidebar1 :: sidebar}"></div>
+			</div>
+
+			<!-- Main Content -->
+
+			<main class="col-md-9 col-lg-10 ps-5 pe-4 pt-4 pb-4">
+
+				<!-- Main Content -->
+				<div class="container-fluid">
+
+					<div class="card shadow-sm border-0">
+
+						<!-- Card Header -->
+						<div class="card-header bg-white border-bottom py-3">
+							<h4 class="mb-0 fw-semibold text-dark">
+								<i class="bi bi-person-gear me-2"></i> Edit User Details
+							</h4>
+						</div>
+
+						<!-- Card Body -->
+						<div class="card-body">
+
+							<!-- Hidden Values -->
+							<span id="loggedinrole" th:text="${roles}" hidden></span>
+
+							<!-- Error Message -->
+							<div id="responseError" class="alert alert-danger d-none"
+								role="alert"></div>
+
+							<form id="updateuser">
+
+								<div class="row g-4">
+
+									<!-- Email -->
+									<div class="col-md-6">
+										<label for="email" class="form-label"> Email Address </label>
+
+										<input type="email" class="form-control" id="email"
+											name="email" readonly>
+
+										<div id="emailError" class="text-danger small mt-1"></div>
+									</div>
+
+									<!-- First Name -->
+									<div class="col-md-6">
+										<label for="firstname" class="form-label"> First Name
+										</label> <input type="text" class="form-control" id="firstname"
+											name="firstname" readonly>
+									</div>
+
+									<!-- Last Name -->
+									<div class="col-md-6">
+										<label for="lastname" class="form-label"> Last Name </label> <input
+											type="text" class="form-control" id="lastname"
+											name="lastname" readonly>
+									</div>
+
+									<!-- Mobile -->
+									<div class="col-md-6">
+										<label for="mobileno" class="form-label"> Mobile
+											Number </label> <input type="text" class="form-control" id="mobileno"
+											name="mobileno" required>
+									</div>
+
+									<!-- User Status -->
+									<div class="col-md-6">
+										<label for="userstatus" class="form-label"> Current
+											Status </label> <input type="text" class="form-control"
+											id="userstatus" name="userstatus" readonly>
+									</div>
+
+									<!-- Time Zone -->
+									<div class="col-md-6">
+										<label for="timeZone" class="form-label"> Time Zone </label> <select
+											id="timeZone" name="timeZone" class="form-select">
+
+											<option value="">Loading time zones...</option>
+
+										</select>
+									</div>
+
+									<!-- Admin Section -->
+									<div th:if="${roles.contains('ROLE_ADMIN')}">
+
+										<hr class="my-4">
+
+										<h5 class="fw-semibold text-primary mb-3">
+											<i class="bi bi-shield-lock me-2"></i> Administrator Controls
+										</h5>
+
+										<div class="row g-4">
+
+											<!-- Password -->
+											<div class="col-md-6">
+												<label for="password" class="form-label"> Change
+													Password </label> <input type="password" class="form-control"
+													id="password" name="password"
+													placeholder="Enter new password">
+											</div>
+
+											<!-- Status -->
+											<div class="col-md-6">
+												<label for="changestatus" class="form-label"> Update
+													Status </label> <select id="changestatus" name="changestatus"
+													class="form-select">
+
+													<option value="">Loading User Status...</option>
+
+												</select>
+											</div>
+
+											<!-- Delete Roles -->
+											<div class="col-md-6">
+												<label for="userroles" class="form-label"> Remove
+													Roles </label> <select id="userroles" name="userroles"
+													class="form-select" multiple>
+												</select>
+
+												<div class="form-text">Hold Ctrl (Windows) or Cmd
+													(Mac) to select multiple roles.</div>
+											</div>
+
+											<!-- Add Role -->
+											<div class="col-md-6">
+												<label for="changerole" class="form-label"> Add Role
+												</label> <select id="changerole" name="changerole"
+													class="form-select">
+
+													<option value="">Loading User Roles...</option>
+
+												</select>
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<!-- Buttons -->
+								<div class="d-flex justify-content-end gap-2 mt-5">
+
+									<button type="reset" class="btn btn-outline-secondary">
+										<i class="bi bi-arrow-clockwise me-1"></i> Reset
+									</button>
+
+									<button type="submit" class="btn btn-primary">
+
+										<i class="bi bi-check-circle me-1"></i> Update Account
+
+									</button>
+
+								</div>
+
+							</form>
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+
+
+			</main>
+
+		</div>
+	</div>
+
+</body>
+
+
+</body>
+
+</html>

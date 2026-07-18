@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	data-bs-theme="white">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author"
+	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+<title>Create Account</title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" th:href="@{/css/sign-in.css}">
+
+<!-- Theme JS -->
+<script th:src="@{/js/bootstrap/color-modes.js}"></script>
+<script th:src="@{/js/register.js}" defer></script>
+
+<meta name="theme-color" content="#712cf9">
+<style type="text/css">
+.form-signin {
+  max-width: 800px;
+  padding: 1rem;
+}
+</style>
+
+</head>
+
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+
+	<!-- Keep your SVG section exactly as it is -->
+
+	<div
+		class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+		<!-- Keep the theme toggle exactly as it is -->
+	</div>
+
+	<main class="form-signin w-100 m-auto">
+
+		<form id="registerForm" th:action="@{/register}" method="post"
+			onsubmit="return validateForm()">
+
+			<div class="container-xxl">
+
+				<h1 class="h3 mb-3 fw-normal">Create your account</h1>
+				<p class="text-start">Fill in the details below to create your
+					account</p>
+				<div >
+					<span id="responseError" ></span>
+				</div>
+
+
+				<div class="form-floating mb-3">
+					<input type="email" class="form-control" id="email" name="email"
+						placeholder="name@example.com" required> <label
+						for="email">Email address</label> <span id="emailError"
+						class="error"></span>
+				</div>
+
+				<div class="form-floating mb-3">
+					<input type="password" class="form-control" id="password"
+						name="password" placeholder="Password" required> <label
+						for="password">Password</label> <span id="passwordError"
+						class="error"></span>
+				</div>
+
+
+				<div class="form-floating mb-3">
+					<input type="password" class="form-control" id="confirmPassword"
+						name="confirmPassword" placeholder="Password" required> <label
+						for="confirmPassword">Confirm Password</label>
+				</div>
+				<div class="form-floating mb-3">
+					<select class="form-select" aria-label="Default select example"
+						name="gender" id="gender">
+						<option selected>Select Gender</option>
+
+						<option value="MALE">Male</option>
+						<option value="FEMALE">Female</option>
+						<option value="OTHER">Other</option>
+					</select>
+				</div>
+
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="firstName"
+						name="firstName" placeholder="Enter Firstname" required> <label
+						for="firstName">First Name</label>
+				</div>
+
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="lastName"
+						name="lastName" placeholder="Enter lastname" required> <label
+						for="lastName">Last Name</label>
+				</div>
+
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="mobileNo"
+						name="mobileNo" placeholder="Enter MobileNo" required> <label
+						for="mobileNo">Mobile No</label>
+				</div>
+				<div class="form-floating mb-3">
+					<select class="form-select" aria-label="Default select example"
+						name="timeZone" id="timeZone">
+						<option selected>Select TimeZone</option>
+						<option value="">Loading time zones...</option>
+					</select>
+				</div>
+
+				<button class="btn btn-primary w-100 py-2" type="submit">
+					Create Account</button>
+
+				<div class="form-check text-start my-3">
+					<label class="form-check-label" for="checkDefault"> Already
+						have an account? <a th:href="@{/login}">Sign in</a>
+					</label>
+				</div>
+
+			</div>
+
+			<p class="mt-5 mb-3 text-body-secondary">S Technologies &copy;
+				2000-2025</p>
+
+		</form>
+
+	</main>
+
+	<!-- Bootstrap JS -->
+	<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

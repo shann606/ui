@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="white">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author"
+	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+<title>Sign In</title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" th:href="@{/css/sign-in.css}">
+
+<!-- Theme JS -->
+<script th:src="@{/js/bootstrap/color-modes.js}"></script>
+
+<meta name="theme-color" content="#712cf9">
+
+<!-- Keep your existing styles here -->
+</head>
+
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+
+	<!-- Keep your SVG section exactly as it is -->
+
+	<div
+		class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+		<!-- Keep the theme toggle exactly as it is -->
+	</div>
+
+	<main class="form-signin w-100 m-auto">
+
+		<form th:action="@{/login}" method="post">
+
+			<!-- img class="mb-4"
+                 th:src="@{/assets/brand/bootstrap-logo.svg}"
+                 alt="Bootstrap Logo"
+                 width="72"
+                 height="57" -->
+
+			<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+			<!-- Error Message -->
+			<div th:if="${param.error}" class="error">
+				<span style="font-size: 18px;">⚠️</span> Invalid username or
+				password. Please try again.
+			</div>
+
+			<div th:if="${param.server}" class="error">
+				<span style="font-size: 18px;">⚠️</span> Unable to connect server,
+				Please try later.
+			</div>
+
+			<!-- Display success message when ?registered=true is present -->
+			<div th:if="${param.success}" class="success">
+				<span style="font-size: 18px;">✅</span> Registration successful!
+				Please log in.
+			</div>
+
+			<div th:if="${param.logout}" class="success">
+				<span style="font-size: 18px;">✅</span> Thanks , you are logged out
+				successfully.
+			</div>
+
+			<div class="form-floating">
+				<input type="email" class="form-control" id="username"
+					name="username" placeholder="name@example.com" required> <label
+					for="username"> Email address </label>
+			</div>
+
+			<div class="form-floating">
+				<input type="password" class="form-control" id="password"
+					name="password" placeholder="Password" required> <label
+					for="password"> Password </label>
+			</div>
+
+			<div class="form-check text-start my-3">
+				<input class="form-check-input" type="checkbox" id="checkDefault"
+					name="remember-me"> <label class="form-check-label"
+					for="checkDefault"> Remember me </label>
+			</div>
+
+			<button class="btn btn-primary w-100 py-2" type="submit">
+				Sign in</button>
+
+			<div class="form-check text-start my-3">
+				<label class="form-check-label" for="checkDefault"> New
+					user? <a th:href="@{/register}">Create an account</a>
+				</label>
+			</div>
+
+
+
+			<p class="mt-5 mb-3 text-body-secondary">S Technologies&copy;
+				2000-2025</p>
+
+		</form>
+
+	</main>
+
+	<!-- Bootstrap JS -->
+	<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>
