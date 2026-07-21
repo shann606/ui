@@ -37,6 +37,8 @@ async function categorysearch(event) {
 }
 
 async function fetchData(page) {
+
+
     let result = "";
 
     const fieldDetails = new URLSearchParams({
@@ -78,10 +80,60 @@ async function fetchData(page) {
     }
 
     renderTable(result.content);
-    updatePagination(result.page);
+    updatePagination(result);
 
 
 }
+
+async function deleteCategory(categoryId) {
+
+    const confirmed = confirm("Are you sure you want to delete this category?");
+
+    if (!confirmed) {
+        return; // User clicked Cancel
+    }
+
+    let result = "";
+    try {
+        const response = await fetch(`http://localhost:1000/api/v1/categories/` + categoryId, {
+
+            method: "DELETE",
+        });
+
+        if (response.ok) {
+
+            result = await response.json();
+            const successDiv = document.getElementById("responseSuccess");
+
+            successDiv.textContent = "Category is deleted Successfully.";
+            successDiv.classList.remove("d-none");
+
+        } else {
+
+            const error = await response.json();
+            responseError.textContent = result.reason;
+            responseError.classList.remove("d-none");
+
+            console.error(error.reason);
+        }
+
+        console.log(JSON.stringify(result))
+
+
+    } catch (err) {
+
+        console.error(err);
+        responseError.textContent = "Downstream application might be down";
+        responseError.classList.remove("d-none");
+
+    }
+
+    renderTable(result.content);
+    updatePagination(result);
+
+
+}
+
 
 function renderTable(content) {
 
@@ -94,7 +146,7 @@ function renderTable(content) {
 	  
 	    <tr>
 		  
-	      <td><a href="">${item.name}</a></td>
+	      <td><a href="/categories/edit?id=${item.id}&name=${item.name}">${item.name}</a></td>
 	      <td>${item.status}</td>
 		
 		  <td>
@@ -104,7 +156,8 @@ function renderTable(content) {
             }
 		  </td>
 		  <td>${created}</td>
-		  <td><a href="/dashboard?id=${item.id}">Delete</a></td>
+		  <td> <a href="#" onclick="deleteCategory('${item.id}'); return false;">Delete</a></td>
+		 
 	    </tr>
 	  `;
         tbody.innerHTML += row;
@@ -112,10 +165,15 @@ function renderTable(content) {
 
 }
 
+
+
+
+
 function updatePagination(result) {
 
     currentPage = result.number;
     totalPages = result.totalPages - 1;
+
 
     document.getElementById("pageInfo").innerText = `Page ${currentPage} of ${totalPages}`;
 

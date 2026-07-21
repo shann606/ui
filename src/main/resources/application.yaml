@@ -8,7 +8,7 @@ server:
 logging:
   level:
     root: warn
-    '[org.springframework.web]': debug
+    '[org.springframework.web]': info
     '[com.exp.ui]': trace
 
 
