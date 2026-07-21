@@ -1,4 +1,5 @@
 let id;
+let subCategoryUpdate = false;
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,8 +9,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = new URLSearchParams(queryId).get("name");
 
 
+
+
     const title = document.getElementById("title");
-    title.innerHTML = "Add Sub Category for " + name;
+    const submit = document.getElementById("submitbutton");
+
+    if (name == null) {
+        subCategoryUpdate = true;
+    }
+
+
+
+    if (subCategoryUpdate) {
+        title.innerHTML = "Edit Sub Category";
+        submit.innerHTML = "Update Sub-Category";
+        getSubCategoryData(id);
+    } else {
+        title.innerHTML = "Add Sub Category for " + name;
+        submit.innerHTML = "Save Sub-Category";
+    }
+
+
+
 
 
     const form = document.getElementById("addsubcategory");
@@ -17,10 +38,52 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 
+
+async function getSubCategoryData(id) {
+
+    try {
+
+        const subCategory = await fetch("http://localhost:1000/api/v1/categories/subcategories/" + id, {
+            method: 'GET'
+        });
+
+
+
+
+
+        if (subCategory.ok) {
+
+            const result = await subCategory.json();
+            rendertable(result);
+
+        } else {
+
+            console.log("different status" + JSON.stringify(result.reason));
+            responseError.textContent = result.reason;
+            responseError.classList.remove("d-none");
+        }
+
+
+
+
+
+
+    } catch (error) {
+        console.error(error);
+
+        responseError.textContent = "Issue occured in the down stream";
+        responseError.classList.remove("d-none");
+    }
+
+
+
+}
+
+
 async function addsubcategory(event) {
     event.preventDefault();
     const responseError = document.getElementById("responseError");
- 
+
     const data = {
         name: document.getElementById("subcatname").value,
         description: document.getElementById("description").value,
@@ -31,22 +94,48 @@ async function addsubcategory(event) {
     console.log('data before send' + JSON.stringify(data));
 
     try {
-        const response = await fetch("http://localhost:1000/api/v1/categories/" + id + "/subcategory", {
-            method: "POST",
-            headers: {
+        let response = null;
 
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
+        console.log("update date call " + subCategoryUpdate);
 
-        });
+
+        if (subCategoryUpdate) {
+
+            response = await fetch("http://localhost:1000/api/v1/categories/subcategories/" + id, {
+                method: "PUT",
+                headers: {
+
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+
+            });
+
+
+
+        } else {
+
+
+
+
+            response = await fetch("http://localhost:1000/api/v1/categories/" + id + "/subcategory", {
+                method: "POST",
+                headers: {
+
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+
+            });
+
+        }
 
         const result = await response.json();
 
-        if (response.status == 201) {
+        if (response.status == 200) {
             const successDiv = document.getElementById("responseSuccess");
 
-            successDiv.textContent = "Sub Category added successfully.";
+            successDiv.textContent = subCategoryUpdate ? "Sub-Category updated successfully." : "Sub-Category added successfully.";
             successDiv.classList.remove("d-none");
 
             console.log("Success " + JSON.stringify(result));
@@ -56,8 +145,8 @@ async function addsubcategory(event) {
 
             console.log("different status" + JSON.stringify(result.reason));
             responseError.textContent = result.reason;
-			responseError.classList.remove("d-none");
-			
+            responseError.classList.remove("d-none");
+
         }
 
 
@@ -65,13 +154,19 @@ async function addsubcategory(event) {
     } catch (err) {
         console.error(err);
         responseError.textContent = "Unable to connect to server...";
-		responseError.classList.remove("d-none");
+        responseError.classList.remove("d-none");
     }
 
 
 
 
 }
+
+
+
+
+
+
 
 
 function rendertable(data) {

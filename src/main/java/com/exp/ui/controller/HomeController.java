@@ -135,6 +135,21 @@ public class HomeController {
 		return "addSubcategories";
 
 	}
+	
+	@GetMapping("/categories/edit")
+	public String editCategories(@RequestHeader(name = "X-Username") String username,
+			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id, Model model) {
+
+		model.addAttribute("id", id);
+		model.addAttribute("username", username);
+		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
+
+		System.out.println("Are we getting the data ===" + username + "----" + roles);
+
+		return "categories1";
+
+	}
+
 
 	@GetMapping("/register")
 	public String registerPage() {

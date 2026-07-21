@@ -54,24 +54,33 @@
 				<!-- Main Content -->
 
 
-					<!-- Search Card -->
-					<div class="card shadow-sm border-0 mb-4">
 
-						<div class="card-header bg-white border-bottom py-3">
+				<!-- Search Card -->
+				<div class="card shadow-sm border-0 mb-4">
 
-							<h4 class="mb-1 fw-semibold text-dark" id="title">
-								<i class="bi bi-search me-2 text-primary" ></i> </h4>
+					<div class="card-header bg-white border-bottom py-3">
 
-							<p class="text-secondary mb-0">Search and manage sub categories using
-								different filters.</p>
+						<h4 class="mb-1 fw-semibold text-dark" id="title">
+							<i class="bi bi-search me-2 text-primary"></i>
+						</h4>
 
-						</div>
+						<p class="text-secondary mb-0">Search and manage sub
+							categories using different filters.</p>
 
+					</div>
+					<!-- Hidden Values -->
+					<input type="hidden" id="loggedinrole" th:value="${roles}">
+
+					<div id="responseError" class="alert alert-danger d-none"
+						role="alert"></div>
+
+					<div id="responseSuccess" class="alert alert-success d-none"
+						role="alert"></div>
 
 					<!-- Search Result Card -->
 					<div class="card shadow-sm border-0">
 
-	
+
 						<div class="card-body p-0">
 
 							<div class="table-responsive">
