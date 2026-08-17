@@ -1,220 +1,178 @@
 
-<div th:fragment="sidebar"
-     class="flex-shrink-0 p-3 border-end"
-     style="width:280px; min-height:100vh;">
+<div th:fragment="sidebar" class="flex-shrink-0 p-3 border-end"
+	style="width: 280px; min-height: 100vh;">
 
-    <ul class="list-unstyled ps-0">
+	<ul class="list-unstyled ps-0">
 
 
-        <!-- Dashboard -->
-        <li class="mb-2"
-            th:if="${roles.contains('ROLE_USER') || roles.contains('ROLE_ADMIN')}">
+		<!-- Dashboard -->
+		<li class="mb-2"
+			th:if="${roles.contains('ROLE_USER') || roles.contains('ROLE_ADMIN')}">
 
-            <a th:href="@{/dashboard}"
-               class="sidebar-link d-flex align-items-center text-decoration-none rounded">
+			<a th:href="@{/dashboard}"
+			class="sidebar-link d-flex align-items-center text-decoration-none rounded">
 
-                <i class="bi bi-speedometer2 me-2"></i>
-                Dashboard
+				<i class="bi bi-speedometer2 me-2"></i> Dashboard
 
-            </a>
+		</a>
 
-        </li>
+		</li>
 
 
 
-        <!-- Expenses -->
-        <li class="mb-2"
-            th:if="${roles.contains('ROLE_USER') || roles.contains('ROLE_ADMIN')}">
+		<!-- Expenses -->
+		<li class="mb-2"
+			th:if="${roles.contains('ROLE_USER') || roles.contains('ROLE_ADMIN')}">
 
-            <button class="btn sidebar-toggle d-flex align-items-center justify-content-between w-100 rounded border-0"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#expenseMenu"
-                    aria-expanded="false"
-                    aria-controls="expenseMenu">
+			<button
+				class="btn sidebar-toggle d-flex align-items-center justify-content-between w-100 rounded border-0"
+				data-bs-toggle="collapse" data-bs-target="#expenseMenu"
+				aria-expanded="false" aria-controls="expenseMenu">
 
-                <span>
-                    <i class="bi bi-wallet2 me-2"></i>
-                    Expenses
-                </span>
+				<span> <i class="bi bi-wallet2 me-2"></i> Expenses
+				</span> <i class="bi bi-chevron-right toggle-icon"></i>
 
-                <i class="bi bi-chevron-right toggle-icon"></i>
+			</button>
 
-            </button>
 
+			<div class="collapse" id="expenseMenu">
 
-            <div class="collapse" id="expenseMenu">
+				<ul class="btn-toggle-nav list-unstyled small ms-3 mt-2">
 
-                <ul class="btn-toggle-nav list-unstyled small ms-3 mt-2">
+					<li><a th:href="@{/expenses/add}"
+						class="sidebar-sub-link d-flex align-items-center text-decoration-none rounded">
 
-                    <li>
-                        <a th:href="@{/expenses/add}"
-                           class="sidebar-sub-link d-flex align-items-center text-decoration-none rounded">
+							<i class="bi bi-plus-circle me-2"></i> Add Expense
 
-                            <i class="bi bi-plus-circle me-2"></i>
-                            Add Expense
+					</a></li>
+					<li><a th:href="@{/expenses/search}"
+						class="sidebar-sub-link d-flex align-items-center text-decoration-none rounded">
 
-                        </a>
-                    </li>
+							<i class="bi bi-search me-2"></i> Search Expense
 
+					</a></li>
 
-                    <li>
-                        <a th:href="@{/expenses/edit}"
-                           class="sidebar-sub-link d-flex align-items-center text-decoration-none rounded">
+				</ul>
 
-                            <i class="bi bi-pencil-square me-2"></i>
-                            Edit Expense
+			</div>
 
-                        </a>
-                    </li>
+		</li>
 
 
-                    <li>
-                        <a th:href="@{/expenses/search}"
-                           class="sidebar-sub-link d-flex align-items-center text-decoration-none rounded">
+	
+		
+		<!-- set up budget -->
+		<li class="mb-2"
+			th:if="${roles.contains('ROLE_USER') || roles.contains('ROLE_ADMIN')}">
 
-                            <i class="bi bi-search me-2"></i>
-                            Search Expense
+			<a th:href="@{/reports}"
+			class="sidebar-link d-flex align-items-center text-decoration-none rounded">
 
-                        </a>
-                    </li>
+				<i class="bi bi-piggy-bank me-2"></i> Set Budget
 
-                </ul>
+		</a>
 
-            </div>
+		</li>
 
-        </li>
 
 
+		<!-- Reports -->
+		<li class="mb-2"
+			th:if="${roles.contains('ROLE_USER') || roles.contains('ROLE_ADMIN')}">
 
-        <!-- Reports -->
-        <li class="mb-2"
-            th:if="${roles.contains('ROLE_USER') || roles.contains('ROLE_ADMIN')}">
+			<a th:href="@{/reports}"
+			class="sidebar-link d-flex align-items-center text-decoration-none rounded">
 
-            <a th:href="@{/reports}"
-               class="sidebar-link d-flex align-items-center text-decoration-none rounded">
+				<i class="bi bi-bar-chart-line me-2"></i> Reports
 
-                <i class="bi bi-bar-chart-line me-2"></i>
-                Reports
+		</a>
 
-            </a>
+		</li>
 
-        </li>
 
 
+		<!-- Edit Profile -->
+		<li class="mb-2"
+			th:if="${roles.contains('ROLE_USER') || roles.contains('ROLE_ADMIN')}">
 
-        <!-- Edit Profile -->
-        <li class="mb-2"
-            th:if="${roles.contains('ROLE_USER') || roles.contains('ROLE_ADMIN')}">
+			<a th:href="@{/editprofile(id=${id})}"
+			class="sidebar-link d-flex align-items-center text-decoration-none rounded">
 
-            <a th:href="@{/editprofile(id=${id})}"
-               class="sidebar-link d-flex align-items-center text-decoration-none rounded">
+				<i class="bi bi-person-gear me-2"></i> Edit Profile
 
-                <i class="bi bi-person-gear me-2"></i>
-                Edit Profile
+		</a>
 
-            </a>
+		</li>
 
-        </li>
 
 
+		<li class="border-top my-3"></li>
 
-        <li class="border-top my-3"></li>
 
 
+		<!-- Admin Section -->
+		<li th:if="${roles.contains('ROLE_ADMIN')}" class="mb-2">
+			<!-- Users --> <a th:href="@{/users}"
+			class="sidebar-link d-flex align-items-center text-decoration-none rounded">
 
-        <!-- Admin Section -->
-        <li th:if="${roles.contains('ROLE_ADMIN')}"
-            class="mb-2">
+				<i class="bi bi-people me-2"></i> User Management
 
+		</a> <!-- Categories -->
+			<button
+				class="btn sidebar-toggle d-flex align-items-center justify-content-between w-100 rounded border-0"
+				data-bs-toggle="collapse" data-bs-target="#categoryMenu"
+				aria-expanded="false" aria-controls="categoryMenu">
 
-            <!-- Users -->
-            <a th:href="@{/users}"
-               class="sidebar-link d-flex align-items-center text-decoration-none rounded">
 
-                <i class="bi bi-people me-2"></i>
-                User Management
+				<span> <i class="bi bi-folder2-open me-2"></i> Categories
+				</span> <i class="bi bi-chevron-right toggle-icon"></i>
 
-            </a>
 
+			</button>
 
 
-            <!-- Categories -->
-            <button class="btn sidebar-toggle d-flex align-items-center justify-content-between w-100 rounded border-0"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#categoryMenu"
-                    aria-expanded="false"
-                    aria-controls="categoryMenu">
 
+			<div class="collapse" id="categoryMenu">
 
-                <span>
-                    <i class="bi bi-folder2-open me-2"></i>
-                    Categories
-                </span>
+				<ul class="btn-toggle-nav list-unstyled small ms-3 mt-2">
 
 
-                <i class="bi bi-chevron-right toggle-icon"></i>
+					<li><a th:href="@{/categories/add}"
+						class="sidebar-sub-link d-flex align-items-center text-decoration-none rounded">
 
+							<i class="bi bi-folder-plus me-2"></i> Add Category
 
-            </button>
+					</a></li>
+					<li><a th:href="@{/categories/search?action=add}"
+						class="sidebar-sub-link d-flex align-items-center text-decoration-none rounded">
 
+							<i class="bi bi-folder-plus me-2"></i> Add Sub Category
 
+					</a></li>
 
-            <div class="collapse" id="categoryMenu">
 
-                <ul class="btn-toggle-nav list-unstyled small ms-3 mt-2">
+					<li><a th:href="@{/categories/search?action=view}"
+						class="sidebar-sub-link d-flex align-items-center text-decoration-none rounded">
 
+							<i class="bi bi-search me-2"></i> Search Category
 
-                    <li>
-                        <a th:href="@{/categories/add}"
-                           class="sidebar-sub-link d-flex align-items-center text-decoration-none rounded">
+					</a></li>
 
-                            <i class="bi bi-folder-plus me-2"></i>
-                            Add Category
 
-                        </a>
-                    </li>
-                       <li>
-                        <a th:href="@{/categories/search?action=add}"
-                           class="sidebar-sub-link d-flex align-items-center text-decoration-none rounded">
+				</ul>
 
-                            <i class="bi bi-folder-plus me-2"></i>
-                           Add Sub Category
+			</div> <!-- Settings --> <a th:href="@{/settings}"
+			class="sidebar-link d-flex align-items-center text-decoration-none rounded">
 
-                        </a>
-                    </li>
+				<i class="bi bi-gear me-2"></i> Settings
 
+		</a>
 
-                    <li>
-                        <a th:href="@{/categories/search?action=view}"
-                           class="sidebar-sub-link d-flex align-items-center text-decoration-none rounded">
 
-                            <i class="bi bi-search me-2"></i>
-                            Search Category
+		</li>
 
-                        </a>
-                    </li>
 
-
-                </ul>
-
-            </div>
-
-
-
-            <!-- Settings -->
-            <a th:href="@{/settings}"
-               class="sidebar-link d-flex align-items-center text-decoration-none rounded">
-
-                <i class="bi bi-gear me-2"></i>
-                Settings
-
-            </a>
-
-
-        </li>
-
-
-    </ul>
+	</ul>
 
 </div>
 

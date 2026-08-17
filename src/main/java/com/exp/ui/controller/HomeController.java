@@ -59,8 +59,6 @@ public class HomeController {
 		model.addAttribute("username", username);
 		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
 
-		System.out.println("Are we getting the data ===" + username + "----" + roles);
-
 		return "dashboard1";
 
 	}
@@ -72,8 +70,6 @@ public class HomeController {
 		model.addAttribute("id", id);
 		model.addAttribute("username", username);
 		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
-
-		System.out.println("Are we getting the data ===" + username + "----" + roles);
 
 		return "edituser1";
 
@@ -87,8 +83,6 @@ public class HomeController {
 		model.addAttribute("username", username);
 		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
 
-		System.out.println("Are we getting the data ===" + username + "----" + roles);
-
 		return "categories1";
 
 	}
@@ -100,8 +94,6 @@ public class HomeController {
 		model.addAttribute("id", id);
 		model.addAttribute("username", username);
 		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
-
-		System.out.println("Are we getting the data ===" + username + "----" + roles);
 
 		return "categorysearch1";
 
@@ -115,27 +107,22 @@ public class HomeController {
 		model.addAttribute("username", username);
 		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
 
-		System.out.println("Are we getting the data ===" + username + "----" + roles);
-
 		return "subcategories";
 
 	}
 
 	@GetMapping("/categories/subcategories/add")
 	public String addSubCategories(@RequestHeader(name = "X-Username") String username,
-			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id,
-			Model model) {
+			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id, Model model) {
 
 		model.addAttribute("id", id);
 		model.addAttribute("username", username);
 		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
 
-		System.out.println("Are we getting the data ===" + username + "----" + roles);
-
 		return "addSubcategories";
 
 	}
-	
+
 	@GetMapping("/categories/edit")
 	public String editCategories(@RequestHeader(name = "X-Username") String username,
 			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id, Model model) {
@@ -144,12 +131,46 @@ public class HomeController {
 		model.addAttribute("username", username);
 		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
 
-		System.out.println("Are we getting the data ===" + username + "----" + roles);
-
 		return "categories1";
 
 	}
 
+	@GetMapping("/expenses/add")
+	public String addExpenses(@RequestHeader(name = "X-Username") String username,
+			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id, Model model) {
+		System.out.println("is this hitting here");
+
+		model.addAttribute("id", id);
+		model.addAttribute("username", username);
+		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
+
+		return "expenses";
+
+	}
+
+	@GetMapping("/expenses/edit")
+	public String editExpenses(@RequestHeader(name = "X-Username") String username,
+			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id, Model model) {
+
+		model.addAttribute("id", id);
+		model.addAttribute("username", username);
+		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
+
+		return "expenses";
+
+	}
+	
+	@GetMapping("/expenses/search")
+	public String searchExpenses(@RequestHeader(name = "X-Username") String username,
+			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id, Model model) {
+
+		model.addAttribute("id", id);
+		model.addAttribute("username", username);
+		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
+
+		return "expensesearch";
+
+	}
 
 	@GetMapping("/register")
 	public String registerPage() {

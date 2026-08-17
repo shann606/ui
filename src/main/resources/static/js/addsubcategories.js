@@ -1,5 +1,6 @@
 let id;
 let subCategoryUpdate = false;
+let url;
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -35,6 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.getElementById("addsubcategory");
     form.addEventListener("submit", addsubcategory);
+	
+	
 })
 
 
@@ -175,4 +178,6 @@ function rendertable(data) {
     document.getElementById("subcatname").value = data.name;
     document.getElementById("description").value = data.description;
     document.getElementById("status").value = data.status;
+	
+	
 }
