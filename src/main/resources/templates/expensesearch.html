@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	data-bs-theme="white">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author"
+	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+<title>Sign In</title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css}">
+
+<!-- Custom CSS -->
+
+<link rel="stylesheet" th:href="@{/css/sidebar1.css}">
+
+<!-- Theme JS -->
+<script th:src="@{/js/bootstrap/color-modes.js}"></script>
+<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+
+<!--  calling microservices -->
+<script th:src="@{/js/expensesearch.js}" defer></script>
+
+<meta name="theme-color" content="#712cf9">
+<title>Expense Dashboard. Track your Expense</title>
+
+
+
+</head>
+
+
+
+
+<body>
+
+	<div th:replace="~{fragments/header1 :: header}"></div>
+	<div class="container-fluid">
+		<div class="row">
+
+			<!-- Sidebar -->
+			<div class="col-md-3 col-lg-2 p-0">
+				<div th:replace="~{fragments/sidebar1 :: sidebar}"></div>
+			</div>
+
+			<!-- Main Content -->
+
+			<main class="col-md-9 col-lg-10 ps-5 pe-4 pt-4 pb-4">
+				<!-- Main Content -->
+				<div class="container-fluid">
+
+					<!-- Search Card -->
+					<div class="card shadow-sm border-0 mb-4">
+
+						<div class="card-header bg-white border-bottom py-3">
+
+							<h4 class="mb-1 fw-semibold text-dark" id="search">
+								<i class="bi bi-search me-2 text-primary"></i>
+							</h4>
+
+							<p class="text-secondary mb-0">Track Expenses , Save more</p>
+
+						</div>
+						<!-- Error Message -->
+						<div id="responseError" class="alert alert-danger d-none"
+							role="alert"></div>
+
+						<div id="responseSuccess" class="alert alert-success d-none"
+							role="alert"></div>
+
+						<input type="hidden" id="userId" name="userId" th:value="${id}">
+
+						<div class="card-body">
+
+							<form id="expensesearch">
+
+								<div class="row g-4">
+
+
+									<!-- Created From -->
+									<div class="col-md-6 col-lg-3">
+
+										<label for="fromdate" class="form-label"> Created From
+										</label> <input type="date" id="fromdate" name="fromdate"
+											class="form-control">
+
+									</div>
+
+									<!-- Created To -->
+									<div class="col-md-6 col-lg-3">
+
+										<label for="todate" class="form-label"> Created To </label> <input
+											type="date" id="todate" name="todate" class="form-control">
+
+									</div>
+
+
+
+
+									<!-- Payment status -->
+									<div class="col-md-6 col-lg-3">
+
+										<label for="status" class="form-label"> Payment Status
+										</label> <select id="status" name="status" class="form-select">
+
+											<option value="">Select Payment Type</option>
+
+											<option value="UPI">UPI</option>
+											<option value="NETBANKING">Net-banking</option>
+											<option value="CASH">Cash</option>
+											<option value="CCARD">Credit-Card</option>
+											<option value="DCARD">Debit-Card</option>
+											<option value="WALLET">Wallet</option>
+
+										</select>
+
+									</div>
+
+									<!-- Category wise -->
+									<div class="col-md-6 col-lg-3">
+
+										<label for="status" class="form-label">Category </label> <select
+											id="categories" name="categories" class="form-select">
+
+
+											<option value="">Select Category</option>
+											<option value="">Loading Categories...</option>
+										</select>
+
+
+									</div>
+
+								</div>
+
+								<!-- Buttons -->
+								<div class="d-flex justify-content-end gap-2 mt-4">
+
+									<button type="reset" class="btn btn-outline-secondary">
+
+										<i class="bi bi-arrow-clockwise me-1"></i> Clear
+
+									</button>
+
+									<button type="submit" class="btn btn-primary">
+
+										<i class="bi bi-search me-1"></i> Search
+
+									</button>
+
+								</div>
+
+							</form>
+
+						</div>
+
+					</div>
+
+					<!-- Search Result Card -->
+					<div class="card shadow-sm border-0">
+
+						<div class="card-header bg-white border-bottom py-3">
+
+							<h5 class="mb-0 fw-semibold text-dark">
+								<i class="bi bi-folder2-open me-2 text-primary"></i> Search
+								Results
+							</h5>
+
+						</div>
+
+						<div class="card-body p-0">
+
+							<div class="table-responsive">
+
+								<table class="table table-hover align-middle mb-0">
+
+									<thead class="table-light">
+
+										<tr>
+
+											<th>Category</th>
+											<th>Sub-Category</th>
+											<th>Amount</th>
+											<th>Payment</th>
+											<th>Date</th>
+											<th>Details</th>
+											<th class="text-center">Action</th>
+
+										</tr>
+
+									</thead>
+
+									<tbody id="expenseresultbody">
+
+										<!-- Dynamic Data -->
+
+									</tbody>
+
+								</table>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<!-- Pagination -->
+					<div class="d-flex justify-content-between align-items-center mt-4">
+
+						<button id="prevBtn" class="btn btn-outline-primary">
+
+							<i class="bi bi-chevron-left"></i> Previous
+
+						</button>
+
+						<span id="pageInfo" class="fw-semibold text-muted"> Page 1
+							of 1 </span>
+
+						<button id="nextBtn" class="btn btn-outline-primary">
+
+							Next <i class="bi bi-chevron-right"></i>
+
+						</button>
+
+					</div>
+
+				</div>
+
+
+
+			</main>
+
+		</div>
+	</div>
+
+</body>
+
+
+</body>
+
+</html>
