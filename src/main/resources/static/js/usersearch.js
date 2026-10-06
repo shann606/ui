@@ -39,7 +39,7 @@ async function fetchData(page) {
 
     });
 	  try {
-        const response = await fetch(`http://localhost:1000/api/v1/admin/usersearch?${fieldDetails}&pageNo=${page}`, {
+        const response = await fetch(`/api/v1/admin/usersearch?${fieldDetails}&pageNo=${page}`, {
 
             method: "GET",
         });

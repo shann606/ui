@@ -54,7 +54,7 @@ async function fetchData(page) {
     });
     console.log(fieldDetails.toString);
     try {
-        const response = await fetch(`http://localhost:1000/api/v1/categories/search?${fieldDetails}&pageNo=${page}`, {
+        const response = await fetch(`/api/v1/categories/search?${fieldDetails}&pageNo=${page}`, {
 
             method: "GET",
         });
@@ -95,7 +95,7 @@ async function deleteCategory(categoryId) {
 
     let result = "";
     try {
-        const response = await fetch(`http://localhost:1000/api/v1/categories/` + categoryId, {
+        const response = await fetch(`/api/v1/categories/` + categoryId, {
 
             method: "DELETE",
         });

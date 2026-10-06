@@ -26,7 +26,7 @@ async function deleteSubCategory(categoryId, subCategoryId) {
 
     try {
 
-        const subCatResponse = await fetch("http://localhost:1000/api/v1/categories/subcategories/" + subCategoryId + "?categoryId=" + categoryId, {
+        const subCatResponse = await fetch("/api/v1/categories/subcategories/" + subCategoryId + "?categoryId=" + categoryId, {
             method: 'DELETE'
         });
 
@@ -75,7 +75,7 @@ async function fetchData(page) {
         console.log("are getting the id ::" + id);
 
 
-        const subCatResponse = await fetch("http://localhost:1000/api/v1/categories/" + id + "/subcategories?pageNo=" + page, {
+        const subCatResponse = await fetch("/api/v1/categories/" + id + "/subcategories?pageNo=" + page, {
             method: 'GET'
         });
 

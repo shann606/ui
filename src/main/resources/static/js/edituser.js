@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 
         console.log(id);
-        const userResponse = await fetch("http://localhost:1000/api/v1/admin/usersearch/" + id, {
+        const userResponse = await fetch("/api/v1/admin/usersearch/" + id, {
             method: 'GET'
         });
 
@@ -99,7 +99,7 @@ document.getElementById("updateuser").addEventListener("submit", async function(
     console.log(JSON.stringify(user));
 
     try {
-        const response = await fetch("http://localhost:1000/api/v1/admin/users/" + id, {
+        const response = await fetch("/api/v1/admin/users/" + id, {
             method: "PATCH",
             headers: {
 

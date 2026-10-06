@@ -38,7 +38,7 @@ async function getCategoryData(id) {
 
     try {
 
-        const response = await fetch(`http://localhost:1000/api/v1/categories/` + id, {
+        const response = await fetch(`/api/v1/categories/` + id, {
 
             method: "GET",
         });
@@ -91,7 +91,7 @@ async function addCategory(event) {
     try {
 
         if (newCategory) {
-            response = await fetch("http://localhost:1000/api/v1/categories", {
+            response = await fetch("/api/v1/categories", {
                 method: "POST",
                 headers: {
 
@@ -120,7 +120,7 @@ async function addCategory(event) {
             }
         } else {
 
-            response = await fetch("http://localhost:1000/api/v1/categories/" + id, {
+            response = await fetch("/api/v1/categories/" + id, {
                 method: "PUT",
                 headers: {
 

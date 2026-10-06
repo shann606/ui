@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>An Error Occurred</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        .error-container { background: #f9f9f9; padding: 20px; border-radius: 8px; display: inline-block; }
+        h1 { color: #ff6b6b; }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>Oops! Something went wrong, Our team is looking in to this issue please try again</h1>
+        <p><strong>Status:</strong> <span th:text="${status}">500</span></p>
+        <p><strong>Error:</strong> <span th:text="${error}">Internal Server Error</span></p>
+        <p><strong>Message:</strong> <span th:text="${message}">Error details here</span></p>
+        <p><strong>Time:</strong> <span th:text="${timestamp}">Timestamp</span></p>
+        
+        <br>
+        <a th:href="@{/dashboard}">Return to Home Page</a>
+    </div>
+</body>
+</html>

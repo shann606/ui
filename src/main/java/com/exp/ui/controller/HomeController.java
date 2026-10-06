@@ -114,12 +114,12 @@ public class HomeController {
 	@GetMapping("/categories/subcategories/add")
 	public String addSubCategories(@RequestHeader(name = "X-Username") String username,
 			@RequestHeader("X-Roles") String roles, @RequestHeader("X-Id") String id, Model model) {
-
+	
 		model.addAttribute("id", id);
 		model.addAttribute("username", username);
 		model.addAttribute("roles", Arrays.stream(roles.split(",")).toList());
 
-		return "addSubcategories";
+		return "addsubcategories";
 
 	}
 

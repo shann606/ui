@@ -46,7 +46,7 @@ async function getSubCategoryData(id) {
 
     try {
 
-        const subCategory = await fetch("http://localhost:1000/api/v1/categories/subcategories/" + id, {
+        const subCategory = await fetch("/api/v1/categories/subcategories/" + id, {
             method: 'GET'
         });
 
@@ -104,7 +104,7 @@ async function addsubcategory(event) {
 
         if (subCategoryUpdate) {
 
-            response = await fetch("http://localhost:1000/api/v1/categories/subcategories/" + id, {
+            response = await fetch("/api/v1/categories/subcategories/" + id, {
                 method: "PUT",
                 headers: {
 
@@ -121,7 +121,7 @@ async function addsubcategory(event) {
 
 
 
-            response = await fetch("http://localhost:1000/api/v1/categories/" + id + "/subcategory", {
+            response = await fetch("/api/v1/categories/" + id + "/subcategory", {
                 method: "POST",
                 headers: {
 

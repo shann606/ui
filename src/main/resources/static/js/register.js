@@ -69,7 +69,7 @@ async function registerUser(event) {
     try {
 
 
-        const response = await fetch("http://localhost:1000/api/v1/users", {
+        const response = await fetch("/api/v1/users", {
 
             method: "POST",
 

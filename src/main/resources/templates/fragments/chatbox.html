@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<body>
+
+	<!-- Define the chat fragment -->
+	<div th:fragment="chat-box">
+
+		<!-- Floating Chat Toggle Button -->
+		<button class="chat-toggle-btn" id="chatToggleBtn"
+			onclick="toggleChat()">💬</button>
+
+		<!-- Collapsible Chat Window -->
+		<div class="chat-container" id="chatContainer">
+			<div class="chat-header">
+				I am Riya, your AI Assistant
+				<button class="chat-close-btn" onclick="toggleChat()">&times;</button>
+			</div>
+			<div class="chat-messages" id="chatMessages">
+				<div class="message">I am Riya, Please select an option:</div>
+				<div class="message">
+					<button onclick="handleQuery('About the application')">About us</button>
+					<button onclick="handleQuery('Add Expense')">Add Expense</button>
+					<button onclick="handleQuery('Technical Support')">
+						Technical Support</button>
+				</div>
+				
+				</div>
+				<div class="chat-input-area">
+					<input type="text" id="chatInput" placeholder="Type a message..."
+						onkeypress="handleKeyPress(event)">
+					<button onclick="sendMessage()">Send</button>
+				</div>
+			</div>
+
+		</div>
+</body>
+</html>
