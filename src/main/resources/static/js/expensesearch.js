@@ -29,7 +29,7 @@ async function getBaseData(selectedId) {
 
     try {
 
-        const response = await fetch(`http://localhost:1000/api/v1/expenses/categories`, {
+        const response = await fetch(`/api/v1/expenses/categories`, {
 
             method: "GET",
         });
@@ -96,7 +96,7 @@ async function fetchData(page) {
 	
     console.log("Search feilds "+fieldDetails.toString);
     try {
-        const response = await fetch("http://localhost:1000/api/v1/expenses/search/" + userId + "?" + fieldDetails + "&pageNo=" + page, {
+        const response = await fetch("/api/v1/expenses/search/" + userId + "?" + fieldDetails + "&pageNo=" + page, {
 
             method: "GET",
         });
@@ -148,7 +148,7 @@ async function deleteExpense(expenseId) {
 
 
     try {
-        const response = await fetch("http://localhost:1000/api/v1/expenses/" + expenseId, {
+        const response = await fetch("/api/v1/expenses/" + expenseId, {
 
             method: "DELETE",
         });

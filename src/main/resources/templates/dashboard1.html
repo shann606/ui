@@ -19,15 +19,22 @@
 <!-- Custom CSS -->
 
 <link rel="stylesheet" th:href="@{/css/sidebar1.css}">
+<link rel="stylesheet" th:href="@{/css/chat.css}">
+
 
 <!-- Theme JS -->
 <script th:src="@{/js/bootstrap/color-modes.js}"></script>
 <script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
-
+<script th:src="@{/js/chat.js}" defer></script>
 <!--  calling microservices -->
 <script th:src="@{/js/app.js}" defer></script>
 
+
 <meta name="theme-color" content="#712cf9">
+
+
+
+
 <title>Expense Dashboard. Track your Expense</title>
 
 
@@ -147,9 +154,6 @@
 
 
 								<tbody id="expenseTableBody">
-
-
-								
 							</table>
 
 						</div>
@@ -165,8 +169,8 @@
 		</div>
 	</div>
 
-</body>
-
+	<!-- Floating Chat Toggle Button -->
+	<div th:replace="~{fragments/chatbox :: chat-box}"></div>
 
 </body>
 

@@ -35,7 +35,7 @@ async function getBaseData(selectedId) {
 
     try {
 
-        const response = await fetch(`http://localhost:1000/api/v1/expenses/categories`, {
+        const response = await fetch(`/api/v1/expenses/categories`, {
 
             method: "GET",
         });
@@ -104,7 +104,7 @@ async function getSubCategoryData(id, selectedId) {
 
     try {
 
-        const response = await fetch(`http://localhost:1000/api/v1/expenses/subcategories/` + id, {
+        const response = await fetch(`/api/v1/expenses/subcategories/` + id, {
 
             method: "GET",
         });
@@ -187,7 +187,7 @@ document.getElementById("addexpense").addEventListener("submit", async function(
         console.log(JSON.stringify(expesnses));
 
         if (isNew) {
-            response = await fetch("http://localhost:1000/api/v1/expenses", {
+            response = await fetch("/api/v1/expenses", {
 
                 method: "POST",
 
@@ -201,7 +201,7 @@ document.getElementById("addexpense").addEventListener("submit", async function(
             });
         } else {
 
-            response = await fetch("http://localhost:1000/api/v1/expenses/" + expId, {
+            response = await fetch("/api/v1/expenses/" + expId, {
 
                 method: "PUT",
 
@@ -260,7 +260,7 @@ async function getExpenseData(expId) {
 
     try {
 
-        const response = await fetch(`http://localhost:1000/api/v1/expenses/` + expId, {
+        const response = await fetch(`/api/v1/expenses/` + expId, {
 
             method: "GET",
         });

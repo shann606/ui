@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ui frontend
+    name: uiservice
 
 server:
   port: 4000
